@@ -13,7 +13,7 @@
 <body>
 	<div class="container mt-4">
 		<h1>Форма регистрации</h1><br>
-		<form id="emailForm" method="POST">
+		<form action="" id="emailForm" method="POST">
 			<input class="form-control" id="login" placeholder="Введите login"  
 			type="text" name="login" value="<?php echo @$data['login']; ?>"><br>
 			<input class="form-control" id="email" placeholder="Введите email" 
@@ -22,12 +22,11 @@
 			 type="password" name="password_1" value="<?php echo @$data['password_1']; ?>"><br>
 			<input class="form-control" id="password_2" placeholder="Повторите password" 
 			type="password" name="password_2" value="<?php echo @$data['password_2']; ?>"><br>
-			<!--<div id="errorMass" class="p-3 mb-2 bg-danger text-white"></div>-->
 			<hr>
-			<button type="submit" id="button" name="button" class="btn btn-success">Зарегистрироваться</button>		
+			<button type="submit" id="button" name="b_signup" class="btn btn-success">Зарегистрироваться</button>	
+			<a class="btn btn-success" href="/users_login.php">Авторизоваться</a>
+			<a class="btn btn-success" href="/">Вернутся на главную</a>
 		</form>
 	</div>
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="js/form.js"></script>-->
 </body>
 </html>
