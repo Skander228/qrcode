@@ -4,7 +4,6 @@
 	$password_1 = $_POST['password_1'];
 	$password_2 = $_POST['password_2'];
 
-	$skany = "skany2@mail.ru";
 	//
 	$subject = "=?utf-8?B?".base64_encode("Сообщение с сайта")."?=";
 	//
