@@ -1,6 +1,6 @@
 <?php  
 	require "includes/db.php";
-	include "includes/main.php";
+	include "includes/user_registration.php";
 ?>
 
 <html>

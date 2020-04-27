@@ -1,6 +1,7 @@
 <?php  
 	require "includes/db.php";
-	include "includes/main.php";
+	include "includes/user_authorization.php";
+
 ?>
 
 <html>
@@ -17,7 +18,7 @@
 			<input class="form-control" id="login" placeholder="Введите login"  
 			type="text" name="login_1" value="<?php echo @$data['login_1']; ?>"><br>
 			<input class="form-control" id="password_1" placeholder="Введите password"
-			 type="password" name="password" value="<?php echo @$data['password_1']; ?>"><br>
+			 type="password" name="password" value="<?php echo @$data['password']; ?>"><br>
 			<hr>
 			<button type="submit" id="button" name="b_login" class="btn btn-success">Авторизоваться</button>		
 			<a class="btn btn-success" href="/">Вернутся на главную</a>
