@@ -17,7 +17,7 @@
 		<div class="jumbotron jumbotron-fluid form-group" style="margin: 0px; height: 450px; margin-top: 0px; padding-top: 0px;">
 		<div class="d-flex flex-row bd-highlight mb-3 form-group" style="background-color: #E5E7EA; margin-top: -50px;">
 			<img src="includes/image/logo_2.png">
-			<div class="d-flex align-content-center flex-wrap form-group"><h1 style="font-size: 90px;">Kkhemiri QRcode</h1></div>
+			<div class="d-flex align-items-center"><h1 style="font-size: 90px;">Kkhemiri QRcode</h1></div>
 		</div>
 	</div>
 

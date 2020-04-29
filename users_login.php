@@ -12,13 +12,12 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-
-	<div class="container mt-2">
+	<div class="container mt-2" >
 		<div class="form-group">
 			<h1>Вход в систему</h1>
 		</div>
-		<form class="" id="emailForm" method="POST">
-			<div class="form-group ">
+		<form class="" id="emailForm" method="POST" style="margin-bottom: 20px;">
+			<div class="form-group">
 			<input class="form-control" id="login" placeholder="Введите login"  
 				type="text" name="login_1" value="<?php echo @$data['login_1']; ?>">
 			</div>
@@ -36,10 +35,10 @@
 		</form>
 	</div>
 
-	<div class="jumbotron jumbotron-fluid form-group" style="margin: 0px; height: 580px;">
+	<div class="jumbotron jumbotron-fluid form-group h-100" style="margin: 0px; padding-top: 0px; padding-bottom: 0px;">
 		<div class="d-flex flex-row bd-highlight mb-3 form-group">
 			<img src="includes/image/logo_2.png">
-			<div class="d-flex align-content-center flex-wrap form-group"><h1 class="form-group" style="font-size: 90px;">Kkhemiri QRcode</h1></div>
+			<div class="d-flex align-items-center"><h1 class="form-group" style="font-size: 90px;">Kkhemiri QRcode</h1></div>
 		</div>
 	</div>
 
