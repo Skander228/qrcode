@@ -4,23 +4,23 @@
 
 $data = $_POST;
 
-if ( isset( $data['b_login'] ) ) {
+if ( isset( $data['button'] ) ) {
 
 	$error = array();
 
-	$users = R::findOne( 'users', 'login = ?', array( $data['login_1'] ) );
+	$companies = R::findOne( 'companies', 'email = ?', array( $data['email'] ) );
 
-	if ( $users ) {
-		if ( password_verify( $data['password'], $users->password ) ) {
-			$_SESSION['logged_user'] = $users;
-			header ('Location: /');
+	if ( $companies ) {
+		if ( password_verify( $data['password'], $companies->password ) ) {
+			$_SESSION['logged_company'] = $companies;
+			header ('Location: company.php');
         	exit();
 			//echo '<div class="container mt-4" style="color: green;"><h3> Вы успешно авторизовались </h3></div><hr>';
 		} else {
 			$error[] = 'Неверно введен password!';
 		}
 	} else {
-		$error[] = 'Пользователь с таким logoin не найден!';
+		$error[] = 'Пользователь с таким email не найден!';
 	}
 
 	if ( !empty($error) ) {
