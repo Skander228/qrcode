@@ -14,10 +14,13 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-		<div class="jumbotron jumbotron-fluid form-group" style="margin: 0px; height: 450px; margin-top: 0px; padding-top: 0px;">
-		<div class="d-flex flex-row bd-highlight mb-3 form-group" style="background-color: #E5E7EA; margin-top: -50px;">
-			<img src="includes/image/logo_2.png">
-			<div class="d-flex align-items-center"><h1 style="font-size: 90px;">Kkhemiri QRcode</h1></div>
+	
+	<div class="jumbotron jumbotron-fluid form-group mb-0 p-0">
+		<div class="justify-content-center mb-0 form-group d-flex">
+			<div class="d-flex align-items-center">
+				<img src="includes/image/logo_2.png" class="mx-auto d-block col-4 m-lg-0">
+				<h1 style="font-size: 90px;">Kkhemiri QRcode</h1>
+			</div>
 		</div>
 	</div>
 
