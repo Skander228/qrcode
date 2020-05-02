@@ -34,7 +34,7 @@ if ( isset( $data['b_login'] ) ) {
 	/*	Вывод ошибок 
 		array_shift — Извлекает первый элемент массива	*/
 	if ( !empty( $error ) ) {
-		echo '<div class="alert alert-danger" role="alert""><h3>' . array_shift( $error ) . '</h3></div>';
+		echo '<div class="alert alert-danger d-flex justify-content-center" role="alert"><h3>' . array_shift( $error ) . '</h3></div>';
 	}
 }
 

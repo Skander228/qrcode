@@ -45,11 +45,39 @@
 	  </nav>
 	</div>
 
-	<?php echo '<img src=https://s.gravatar.com/avatar/' . md5( $_SESSION['logged_user']->email ) . '?s=80'  ?>>
-	<img src='https://www.gravatar.com/avatar/' <?php md5( $_SESSION['logged_user']->email ) . '?s=80' ?>>
-	<img src="https://s.gravatar.com/avatar/kkhemiriskander@gmail.com?s=80">
+	<div class="d-flex justify-content-between">
+		<div class="jumbotron jumbotron-fluid mr-5 mt-5 ml-5 p-3">
+			<div class="container">
+				<div class="d-flex justify-content-around mt-5">
+					<?php echo '<img src=https://s.gravatar.com/avatar/' 
+					. md5( $_SESSION['logged_user']->email ) . '?s=180&d=monsterid>'  
+					?> <!--Добавляем изоображения пользователя через систему граватар, так же есть система оценок для определенной аудитории изночально стоит оценка G но так же их можно дополнить-->	
+				</div>
+				<div>
+					<?php echo '<div class=""><h3>Ваш логин</h3>' . $_SESSION['logged_user']->login . '</div>' ?>
+					<?php echo '<div class="">' . $_SESSION['logged_user']->email . '</div>' ?>
+					<h3>Для редактирования аватар</h3>
+					<p>1) Войдите в систему Gravatar</p>
+					<a href="https://wordpress.com/log-in/ru" class="btn btn-primary">Войти</a>
+					<p>2) Загрузите файл в системе Gravatar</p>
+					<a href="https://ru.gravatar.com/gravatars/new/computer" class="btn btn-primary">Выполнить</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="jumbotron jumbotron-fluid mr-5 mt-5 ml-5 p-3">
+		 	<div class="container ">
+		    	<h2>Не выходите из дома</h2>
+		    	<br>
+				<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5qrqcdh9rhw&amp;m=7&amp;c=e63100&amp;cr1=ffffff&amp;f=arial&amp;l=0&amp;bv=90&amp;lx=-420&amp;ly=420&amp;hi=20&amp;he=7&amp;hc=a8ddff&amp;rs=80" async="async"></script>
+		  	</div>
+		</div>
+	</div>
+
 
 		
+
+
 	<?php else : ?>		<!--Иначе выполняется-->
 
 	<div class="pos-f-t">
@@ -60,15 +88,15 @@
 
 				<div class="dropdown">
 
-					<button class="btn btn-secondary dropdown-toggle ml-3" type="button" id="dropdownMenuButton"
+					<!--<button class="btn btn-secondary dropdown-toggle ml-3" type="button" id="dropdownMenuButton"
 				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">XXXXX
-					</button>
+					</button>-->
 
-					<a href="admin.php" class="btn btn-secondary">Admin панель</a>
+					<a href="admin_login.php" class="btn btn-secondary">Admin панель</a>
 
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-					</div>
+					</div>-->
 
 				</div>
 			</div>

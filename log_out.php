@@ -6,6 +6,7 @@ require "includes/db.php";
 
 unset( $_SESSION['logged_user'] );
 unset( $_SESSION['logged_company'] );
+unset( $_SESSION['logged_admin'] );
 
 header( 'Location: /' );
 

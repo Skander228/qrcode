@@ -81,7 +81,7 @@ if ( isset( $data['b_signup'] ) ) {
 	} else {
 		//	Вывод ошибок 
 		// array_shift — Извлекает первый элемент массива
-		echo '<div class="alert alert-danger" role="alert"><h3>' . array_shift( $errors ) . '</h3></div>';
+		echo '<div class="alert alert-danger d-flex justify-content-center" role="alert"><h3>' . array_shift( $errors ) . '</h3></div>';
 	}
 }
 

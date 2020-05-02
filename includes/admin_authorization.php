@@ -11,15 +11,15 @@ if ( isset( $data['button'] ) ) {
 	$error = array();
 
 	//	Ищем один объект login из login_1 
-	$users = R::findOne( 'admin', 'login = ?', array( $data['login_1'] ) );
+	$admin = R::findOne( 'admin', 'login = ?', array( $data['login'] ) );
 
 	// Если найден то выпоняем код
-	if ( $users ) {
+	if ( $admin ) {
 		//  Проверяем, соответствует ли пароль хешу
-		if ( password_verify( $data['password'], $users->password ) ) {
+		if ( password_verify( $data['password'], $admin->password ) ) {
 			/*	Записываем пользователя в глобальный массив $_SESSION 
 			которому на страницы будут доступен определенный фонкционал	*/
-			$_SESSION['logged_admin'] = $users;
+			$_SESSION['logged_admin'] = $admin;
 			//	Перенапровляем на сраницу главную страницу
 			header ('Location: admin.php');
         	exit();
@@ -34,7 +34,7 @@ if ( isset( $data['button'] ) ) {
 	/*	Вывод ошибок 
 		array_shift — Извлекает первый элемент массива	*/
 	if ( !empty( $error ) ) {
-		echo '<div class="alert alert-danger" role="alert""><h3>' . array_shift( $error ) . '</h3></div>';
+		echo '<div class="alert alert-danger d-flex justify-content-center" role="alert""><h3>' . array_shift( $error ) . '</h3></div>';
 	}
 }
 
