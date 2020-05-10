@@ -47,19 +47,22 @@
 
 	<div class="d-flex justify-content-between">
 		<div class="jumbotron jumbotron-fluid mr-5 mt-5 ml-5 p-3">
-			<div class="container">
+			<div class="container row justify-content-center">
 				<div class="d-flex justify-content-around mt-5">
-					<?php echo '<img src=https://s.gravatar.com/avatar/' 
-					. md5( $_SESSION['logged_user']->email ) . '?s=180&d=monsterid>'  
+					<?php echo '<img class="rounded-circle" src=https://s.gravatar.com/avatar/' 
+					. md5( $_SESSION['logged_user']->email ) . '?s=280&d=monsterid>'  
 					?> <!--Добавляем изоображения пользователя через систему граватар, так же есть система оценок для определенной аудитории изночально стоит оценка G но так же их можно дополнить-->	
 				</div>
 				<div>
-					<?php echo '<div class=""><h3>Ваш логин</h3>' . $_SESSION['logged_user']->login . '</div>' ?>
-					<?php echo '<div class="">' . $_SESSION['logged_user']->email . '</div>' ?>
-					<h3>Для редактирования аватар</h3>
-					<p>1) Войдите в систему Gravatar</p>
+					<div class="line-group">
+					<?php echo '<div class="m-2"><h2>Ваш логин: '  . $_SESSION['logged_user']->login . '</h2></div>' ?></div>
+					<a href="add_user.php" class="btn btn-primary">Редактировать</a>
+					<?php echo '<div><h2>Ваш email: ' . $_SESSION['logged_user']->email . '</h2></div>' ?>
+					<a href="" class="btn btn-primary">Редактировать</a>
+					<h3 class="mt-5 mb-4">Для редактирования аватар:</h3>
+					<p class="m-2">1) Войдите в систему Gravatar</p>
 					<a href="https://wordpress.com/log-in/ru" class="btn btn-primary">Войти</a>
-					<p>2) Загрузите файл в системе Gravatar</p>
+					<p class="m-2">2) Загрузите файл в системе Gravatar</p>
 					<a href="https://ru.gravatar.com/gravatars/new/computer" class="btn btn-primary">Выполнить</a>
 				</div>
 			</div>

@@ -27,6 +27,7 @@
 	  <div class="collapse" id="navbarToggleExternalContent">
 	    <div class="bg-dark p-4">
 			<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
+			<a href="users.php" class="btn btn-secondary">Управления users</a>
 			<!--Вставить компаненты от открывающейся понели-->
 	    </div>
 	  </div>
@@ -38,6 +39,7 @@
 	    <a class="btn btn-secondary" href="log_out.php">Выйти</a> 	<!--Выход из аккаунта-->
 	  </nav>
 	</div>
+	<h1 class="text-center mt-5">Admin панель</h1>
 	
 	
 
