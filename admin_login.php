@@ -41,6 +41,5 @@
 			<div class="d-flex align-items-center"><h1 class="form-group" style="font-size: 90px;">Kkhemiri QRcode</h1></div>
 		</div>
 	</div>
-
 </body>
 </html>

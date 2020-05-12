@@ -7,15 +7,36 @@
 <?php  
 	// 	Принимаем запрос и определяем его в функцию для ...
 	//	Определяет, была ли установлена переменная значением, отличным от NULL
-	if ( isset( $_POST['new_val'] ) ) {	
+	if ( isset( $_POST['new_val_login'] ) ) {	
 		//	Применяем функцию обнавления login
-		if ( update_users() ) {
+		if ( update_users_login() ) {
+			// 	Проверка в консоли
+			exit( "It is ok_ 2" );
+		} else {
+			exit( "Error_ 2" );
+		}
+	} 
+
+	if ( isset( $_POST['new_val_email'] ) ) {	
+		//	Применяем функцию обнавления login
+		if ( update_users_email() ) {
 			// 	Проверка в консоли
 			exit( "It is ok" );
 		} else {
 			exit( "Error" );
 		}
 	} 
+
+
+	if ( isset( $_POST['new_val_password'] ) ) {	
+		//	Применяем функцию обнавления login
+		if ( update_users_password() ) {
+			// 	Проверка в консоли
+			exit( "It is ok _ 3" );
+		} else {
+			exit( "Error _ 3" );
+		}
+	}
 ?>
 
 <html>
@@ -42,8 +63,8 @@
 	<div class="pos-f-t">
 	  <div class="collapse" id="navbarToggleExternalContent">
 	    <div class="bg-dark p-4">
+	    	<a href="admin.php" class="btn btn-secondary">Главное меню</a>
 			<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
-			<a href="users.php" class="btn btn-secondary">Управления users</a>
 			<!--Вставить компаненты от открывающейся понели-->
 	    </div>
 	  </div>
@@ -80,9 +101,9 @@
 			 		'<tr>' .
 				 	 	'<th scope="row">' . $number . '</th>' .
 				 	 	'<td>' . $row['id'] . '</td>' .
-				 	 	'<td><div class="edit" data-id="' . $row['id']. '" name="login" contenteditable>' . $row['login'] . '</div></td>' .
-				 	 	'<td><div class="edit" data-id="' . $row['id']. '" name="login" contenteditable>' . $row['email'] . '</div></td>' .
-				 	 	'<td><div class="edit" data-id="' . $row['id']. '" name="login" contenteditable>' . 
+				 	 	'<td><div class="edit_login" data-id="' . $row['id']. '" name="login" contenteditable>' . $row['login'] . '</div></td>' .
+				 	 	'<td><div class="edit_email" data-id="' . $row['id']. '" name="email" contenteditable>' . $row['email'] . '</div></td>' .
+				 	 	'<td><div class="edit_password" data-id="' . $row['id']. '" name="password" contenteditable>' . 
 				 	 		mb_substr( $row['password'], 0, 10, 'UTF-8' ) . '...' . '</div></td>' .
 				 	 	'<td>' . $row['date'] . '</td>' .
 		        	'</tr>';
