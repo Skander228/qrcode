@@ -86,6 +86,7 @@
 	      <th scope="col">email</th>
 	      <th scope="col">password</th>
 	      <th scope="col">date</th>
+	      <th scope="col">DEL</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -106,8 +107,17 @@
 				 	 	'<td><div class="edit_password" data-id="' . $row['id']. '" name="password" contenteditable>' . 
 				 	 		mb_substr( $row['password'], 0, 10, 'UTF-8' ) . '...' . '</div></td>' .
 				 	 	'<td>' . $row['date'] . '</td>' .
+				 	 	'<th><div><a class="btn btn-danger" href="?del=' . $row['id'] . ' ">Удалить</a></div></th>' .
 		        	'</tr>';
 			    }
+			    	if ( isset( $_GET['del'] ) ) {
+						$id = $_GET['del'];
+						//	Делаем запрос к бд на изменения login по id
+						$query = " DELETE FROM users WHERE id = $id ";
+						//	Выполняем данный запрос
+						$res  = mysqli_query( $link, $query );
+						
+					}
 			    //	Освобождаем память, занятую результатами запроса
 				mysqli_free_result( $result );
 			}

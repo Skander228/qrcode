@@ -1,5 +1,6 @@
 <?php  
 	require "includes/db.php";
+	include "includes/admin_authorization.php";
 ?>
 
 <html>
@@ -12,6 +13,8 @@
 </head>
 <body>
 
+	<?php if ( isset( $_SESSION['logged_admin'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
+
 	<div class="jumbotron jumbotron-fluid form-group mb-0 p-0">
 		<div class="justify-content-center mb-0 form-group d-flex">
 			<div class="d-flex align-items-center">
@@ -20,8 +23,6 @@
 			</div>
 		</div>
 	</div>
-
-	<?php if ( isset( $_SESSION['logged_admin'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
 
 	<div class="pos-f-t">
 	  <div class="collapse" id="navbarToggleExternalContent">
@@ -45,29 +46,34 @@
 
 	<?php else : ?>		<!--Иначе выполняется от компанмй-->
 
-		<div class="pos-f-t">
-	  <div class="collapse" id="navbarToggleExternalContent">
-	    <div class="bg-dark p-4">
-			<div class="d-flex align-items-center">
-				<div class="dropdown">
-					<a href="/" class="btn btn-secondary">Вернутся на главную</a>
-				</div>
+	<div class="container mt-2" >
+			<div class="form-group">
+				<h1>Вход в Admin систему</h1>
 			</div>
-	    </div>
-	  </div>
-	  <nav class="navbar navbar-dark bg-dark">
-	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-	     	<span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div>
-	    	<a class="btn btn-secondary" href="company.php">Предприятие</a>
-	    	<a class="btn btn-secondary" href="users_signup.php">Регистрация</a>
-	    	<a class="btn btn-secondary" href="users_login.php">Вход</a>
+			<form class="" id="emailForm" method="POST" style="margin-bottom: 20px;">
+				<div class="form-group">
+				<input class="form-control" id="login" placeholder="Введите login"  
+					type="text" name="login" value="<?php echo @$data['login']; ?>">
+				</div>
+				<div class="form-group">
+				<input class="form-control" id="password_1" placeholder="Введите password"
+				 	type="password" name="password" value="<?php echo @$data['password']; ?>">
+				 </div>
+				 <div class="form-group">
+					<button type="submit" id="button" name="button" class="btn btn-primary">Войти</button>		
+				</div>
+				<div class="form-group">
+					<a class="btn btn-secondary" href="/">Вернуться на главную</a>
+				</div>
+			</form>
 		</div>
-	  </nav>
-	</div>
 
-	<h1 class="d-flex justify-content-center mt-5">У вас нет прав на данную страницу</h1>
+		<div class="jumbotron jumbotron-fluid form-group h-100" style="margin: 0px; padding-top: 0px; padding-bottom: 0px;">
+			<div class="d-flex flex-row bd-highlight mb-3 form-group">
+				<img src="includes/image/logo_2.png">
+				<div class="d-flex align-items-center"><h1 class="form-group" style="font-size: 90px;">Kkhemiri QRcode</h1></div>
+			</div>
+		</div>
 
 	<?php endif; ?>		<!--Закрытие условия компанмй-->
 

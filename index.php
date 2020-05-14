@@ -95,7 +95,7 @@
 				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">XXXXX
 					</button>-->
 
-					<a href="admin_login.php" class="btn btn-secondary">Admin панель</a>
+					<a href="admin.php" class="btn btn-secondary">Admin панель</a>
 
 					<!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
@@ -124,7 +124,7 @@
 		</div>
 		<div class="d-flex justify-content-center container">
 			<p class="font-weight-normal">
-				Данный сайт предоставляет Вам саканировать QRcode объекта и быстро информаровать нарушения целостности объекта. Данныя операция занимает не более 30 сек!
+				Данный сайт предоставляет Вам сканировать QRcode объекта и быстро информаровать нарушения целостности объекта. Данныя операция занимает не более 30 сек!
 			</p>
 		</div>
 	</div>
