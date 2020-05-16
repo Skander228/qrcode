@@ -55,13 +55,7 @@
 					
 				<div class="dropdown">
 
-					<button class="btn btn-secondary dropdown-toggle ml-3" type="button" id="dropdownMenuButton"
-				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Опции
-					</button>
-
-					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item btn btn-secondary" href="/">На главную</a>
-					</div>
+					<a href="admin.php" class="btn btn-secondary">Admin панель</a>
 
 				</div>
 
@@ -74,6 +68,7 @@
 	     	<span class="navbar-toggler-icon"></span>
 	    </button>
 	    <div>
+	    	<a class="btn btn-secondary" href="index.php">Пользователь</a>
 	    	<a class="btn btn-secondary" href="company_signup.php">Регистрация</a>
 	    	<a class="btn btn-secondary" href="company_login.php">Вход</a>
 		</div>

@@ -27,9 +27,28 @@
 	<div class="pos-f-t">
 	  <div class="collapse" id="navbarToggleExternalContent">
 	    <div class="bg-dark p-4">
-			<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
-			<a href="users.php" class="btn btn-secondary">Управления users</a>
-			<!--Вставить компаненты от открывающейся понели-->
+			
+
+			<div class="d-flex align-items-center">
+
+				<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
+					
+				<div class="dropdown">
+
+					<button class="btn btn-secondary dropdown-toggle ml-3" type="button" id="dropdownMenuButton"
+				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управлеен пользователя
+					</button>
+
+					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item btn btn-secondary mb-2" href="users.php">Управления users</a>
+						<a class="dropdown-item btn btn-secondary mb-2" href="admin_company.php">Управления company</a>
+						<a class="dropdown-item btn btn-secondary mb-2" href="admin_admin.php">Управления admin</a>
+					</div>
+
+				</div>
+
+			</div>
+
 	    </div>
 	  </div>
 	  <nav class="navbar navbar-dark bg-dark">
