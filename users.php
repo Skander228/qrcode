@@ -72,6 +72,8 @@
 					
 					<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
 
+					<a href="category.php" class="btn btn-secondary ml-3">Управления категориями</a>
+
 					<button class="btn btn-secondary dropdown-toggle ml-3" type="button" id="dropdownMenuButton"
 				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управлеен пользователя
 					</button>

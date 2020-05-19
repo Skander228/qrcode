@@ -32,6 +32,8 @@
 			<div class="d-flex align-items-center">
 
 				<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
+
+				<a href="category.php" class="btn btn-secondary ml-3">Управления категориями</a>
 					
 				<div class="dropdown">
 
