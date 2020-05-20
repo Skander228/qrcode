@@ -1,5 +1,7 @@
 <?php  
 	require "includes/db.php";
+	require "includes/db_conect.php";
+	include "includes/function.php";
 
 	/*git remote add origin git@github.com:Skander228/qrcode.git
 	git push -u origin master*/
@@ -30,6 +32,9 @@
 
 	<?php if ( isset( $_SESSION['logged_user'] ) ) : ?>		<!--Если пользователь зарегестрирован то выполняется-->
 	
+	<?php 
+		$id = $_SESSION['logged_user']->id;
+	?>
 	<div class="pos-f-t">
 	  <div class="collapse" id="navbarToggleExternalContent">
 	    <div class="bg-dark p-4">
@@ -40,7 +45,13 @@
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
-	    <?php echo  '<h1 class="text-secondary">' . $_SESSION['logged_user']->login . '</h1>'; ?> 	<!--Выводим из базы данных пользователя-->
+	    <?php 
+	    	if ( $result = mysqli_query( $link, "SELECT * FROM users WHERE id = $id " ) ) {
+				while( $row = mysqli_fetch_assoc( $result ) ){
+					echo  '<h1 class="text-secondary">' . $row['login'] . '</h1>';
+				}				 
+	    	}	
+	    ?> 	<!--Выводим из базы данных company-->
 	    <a class="btn btn-secondary" href="log_out.php">Выйти</a> 	<!--Выход из аккаунта-->
 	  </nav>
 	</div>
@@ -49,21 +60,52 @@
 		<div class="jumbotron jumbotron-fluid mr-5 mt-5 ml-5 p-3">
 			<div class="container row justify-content-center">
 				<div class="d-flex justify-content-around mt-5">
-					<?php echo '<img class="rounded-circle" src=https://s.gravatar.com/avatar/' 
-					. md5( $_SESSION['logged_user']->email ) . '?s=280&d=monsterid>'  
+					<?php 
+						if ( $result = mysqli_query( $link, "SELECT * FROM users WHERE id = $id " ) ) {
+							while( $row = mysqli_fetch_assoc( $result ) ){
+								echo '<img class="rounded-circle" src=https://s.gravatar.com/avatar/' 
+									. md5( $row['email'] ) . '?s=280&d=monsterid>';
+							}				 
+				    	}
+					  
 					?> <!--Добавляем изоображения пользователя через систему граватар, так же есть система оценок для определенной аудитории изночально стоит оценка G но так же их можно дополнить-->	
 				</div>
 				<div>
 					<div class="line-group">
-					<?php echo '<div class="m-2"><h2>Ваш логин: '  . $_SESSION['logged_user']->login . '</h2></div>' ?></div>
-					<a href="add_user.php" class="btn btn-primary">Редактировать</a>
-					<?php echo '<div><h2>Ваш email: ' . $_SESSION['logged_user']->email . '</h2></div>' ?>
-					<a href="" class="btn btn-primary">Редактировать</a>
-					<h3 class="mt-5 mb-4">Для редактирования аватар:</h3>
-					<p class="m-2">1) Войдите в систему Gravatar</p>
-					<a href="https://wordpress.com/log-in/ru" class="btn btn-primary">Войти</a>
-					<p class="m-2">2) Загрузите файл в системе Gravatar</p>
-					<a href="https://ru.gravatar.com/gravatars/new/computer" class="btn btn-primary">Выполнить</a>
+						
+						<h2>Ваш login:</h2>
+						<?php 
+							if ( $result = mysqli_query( $link, "SELECT * FROM users WHERE id = $id " ) ) {
+								while( $row = mysqli_fetch_assoc( $result ) ){
+									echo '<div class="edit_login mb-3" data-id="' . $_SESSION['logged_user']->id . '" name="login" contenteditable><h2 class="text-primary">' .  $row['login'] . '</h2></div>';
+								}				 
+					    	}
+					    ?><br>
+
+						<h2>Ваш email:</h2>
+						<?php 
+							if ( $result = mysqli_query( $link, "SELECT * FROM users WHERE id = $id " ) ) {
+								while( $row = mysqli_fetch_assoc( $result ) ){
+									echo '<div class="edit_email mb-3" data-id="' . $_SESSION['logged_user']->id . '" name="login" contenteditable><h2 class="text-primary">' .  $row['email'] . '</h2></div>';
+								}				 
+					    	}
+					    ?><br>
+
+					    <h2>Ваш password:</h2>
+						<?php 
+							if ( $result = mysqli_query( $link, "SELECT * FROM users WHERE id = $id " ) ) {
+								while( $row = mysqli_fetch_assoc( $result ) ){
+									echo '<div class="edit_password mb-3" data-id="' . $_SESSION['logged_user']->id. '" name="login" contenteditable><h2 class="text-primary">' . mb_substr( $row['password'], 0, 10, 'UTF-8' )   . '...</h2></div>';
+								}				 
+					    	}
+					    ?>
+					
+						<h3 class="mt-5 mb-4">Для редактирования аватар:</h3>
+						<p class="m-2"><h4>1) Войдите в систему Gravatar</h4></p>
+						<a href="https://wordpress.com/log-in/ru" class="btn btn-primary">Войти</a>
+						<p class="m-2"><h4>2) Загрузите файл в системе Gravatar</h4></p>
+						<a href="https://ru.gravatar.com/gravatars/new/computer" class="btn btn-primary">Выполнить</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -77,9 +119,8 @@
 		</div>
 	</div>
 
-
-		
-
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/script_get_users.js"></script>
 
 	<?php else : ?>		<!--Иначе выполняется-->
 

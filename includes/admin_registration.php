@@ -21,7 +21,7 @@ if ( isset( $data['b_signup'] ) ) {
 		$errors[] = 'Login должен быть не менее 4 символов! Повторите попытку!';
 	}
 
-	if ( mb_strlen( trim( $data['login_1'] ) ) > 50 ) {
+	if ( mb_strlen( trim( $data['login_1'] ) ) > 20 ) {
 		$errors[] = 'Login не должен превышать 20 символов! Повторите попытку!';
 	}
 

@@ -244,4 +244,33 @@
 		}
 			
 	}
+
+				//	Обновление данных пользователя(category_name) для categories
+	function update_category() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_category'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+
+		// Проверка на существования объекта
+		$categories = R::count( 'categories', 'category_name = ?', array( $_POST['new_val_category'] ) );
+
+		if ( $categories == 0 ) {
+			//	Делаем запрос к бд на изменения password по id
+			$query = " UPDATE categories SET category_name = '$value' WHERE id = '$id' ";
+			//	Выполняем данный запрос
+			$res  = mysqli_query( $link, $query );
+			/*	Получает число строк, затронутых предыдущей операцией MySQL
+			затронута 1 строка должен вернуть 1 иначе 0 */
+			if ( mysqli_affected_rows( $link ) ) {
+				return true;
+			}	else {
+				return false; 
+			}
+		}
+			
+	}
 ?>

@@ -1,6 +1,8 @@
 <?php  
 	require "includes/db.php";
 	include "includes/admin_authorization.php";
+	require "includes/db_conect.php";
+	include "includes/function.php";
 ?>
 
 <html>
@@ -14,6 +16,9 @@
 <body>
 
 	<?php if ( isset( $_SESSION['logged_admin'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
+	<?php 
+		$id = $_SESSION['logged_admin']->id;
+	?>
 
 	<div class="jumbotron jumbotron-fluid form-group mb-0 p-0">
 		<div class="justify-content-center mb-0 form-group d-flex">
@@ -25,26 +30,37 @@
 	</div>
 
 	<div class="pos-f-t">
+
 	  <div class="collapse" id="navbarToggleExternalContent">
-	    <div class="bg-dark p-4">
-			
+	    <div class="bg-dark p-4">	
 
 			<div class="d-flex align-items-center">
 
 				<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
-
-				<a href="category.php" class="btn btn-secondary ml-3">Управления категориями</a>
 					
 				<div class="dropdown">
 
-					<button class="btn btn-secondary dropdown-toggle ml-3" type="button" id="dropdownMenuButton"
-				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управлеен пользователя
+					<button class="btn btn-secondary dropdown-toggle ml-2" type="button" id="dropdownMenuButton"
+				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление пользователя
 					</button>
 
 					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item btn btn-secondary mb-2" href="users.php">Управления users</a>
-						<a class="dropdown-item btn btn-secondary mb-2" href="admin_company.php">Управления company</a>
-						<a class="dropdown-item btn btn-secondary mb-2" href="admin_admin.php">Управления admin</a>
+						<a class="dropdown-item btn btn-secondary" href="users.php">Управление users</a>
+						<a class="dropdown-item btn btn-secondary" href="admin_company.php">Управление company</a>
+						<a class="dropdown-item btn btn-secondary" href="admin_admin.php">Управления admin</a>
+					</div>
+
+				</div>
+
+				<div class="dropdown">
+
+					<button class="btn btn-secondary dropdown-toggle ml-2" type="button" id="dropdownMenuButton"
+				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление категориями
+					</button>
+
+					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+						<a href="add_category.php" class="dropdown-item btn btn-secondary">Добавить категорию</a>
+						<a href="category.php" class="dropdown-item btn btn-secondary">Управление категориями</a>
 					</div>
 
 				</div>
@@ -53,17 +69,27 @@
 
 	    </div>
 	  </div>
+
 	  <nav class="navbar navbar-dark bg-dark">
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
-	    <?php echo  '<h1 class="text-secondary">' . $_SESSION['logged_admin']->login . '</h1>'; ?> 	<!--Выводим из базы данных пользователя-->
+	    <?php 
+	    	if ( $result = mysqli_query( $link, "SELECT * FROM admin WHERE id = $id " ) ) {
+				while( $row = mysqli_fetch_assoc( $result ) ){
+					echo  '<h1 class="text-secondary">' . $row['login'] . '</h1>';
+				}				 
+	    	}	
+	    ?> 	<!--Выводим из базы данных пользователя-->
 	    <a class="btn btn-secondary" href="log_out.php">Выйти</a> 	<!--Выход из аккаунта-->
 	  </nav>
+
 	</div>
+
 	<h1 class="text-center mt-5">Admin панель</h1>
 	
-	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/script_get_users.js"></script>
 
 	<?php else : ?>		<!--Иначе выполняется от компанмй-->
 

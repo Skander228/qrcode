@@ -7,36 +7,15 @@
 <?php  
 	// 	Принимаем запрос и определяем его в функцию для ...
 	//	Определяет, была ли установлена переменная значением, отличным от NULL
-	if ( isset( $_POST['new_val_login'] ) ) {	
+	if ( isset( $_POST['new_val_category'] ) ) {	
 		//	Применяем функцию обнавления login
-		if ( update_users_login() ) {
+		if ( update_category() ) {
 			// 	Проверка в консоли
 			exit( "It is ok_ 2" );
 		} else {
 			exit( "Error_ 2" );
 		}
-	} 
-
-	if ( isset( $_POST['new_val_email'] ) ) {	
-		//	Применяем функцию обнавления login
-		if ( update_users_email() ) {
-			// 	Проверка в консоли
-			exit( "It is ok" );
-		} else {
-			exit( "Error" );
-		}
-	} 
-
-
-	if ( isset( $_POST['new_val_password'] ) ) {	
-		//	Применяем функцию обнавления login
-		if ( update_users_password() ) {
-			// 	Проверка в консоли
-			exit( "It is ok _ 3" );
-		} else {
-			exit( "Error _ 3" );
-		}
-	}
+	}  
 ?>
 
 <html>
@@ -59,16 +38,13 @@
 	</div>
 
 	<?php if ( isset( $_SESSION['logged_admin'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
-	<?php 
-		$id = $_SESSION['logged_admin']->id;
-	?>
 
 	<div class="pos-f-t">
 	  <div class="collapse" id="navbarToggleExternalContent">
 	    <div class="bg-dark p-4">
-			
+
 			<div class="d-flex align-items-center">
-						
+					
 				<div class="dropdown">
 
 					<a href="admin.php" class="btn btn-secondary mr-2">Главное меню</a>
@@ -108,13 +84,7 @@
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
-	    <?php 
-	    	if ( $result = mysqli_query( $link, "SELECT * FROM admin WHERE id = $id " ) ) {
-				while( $row = mysqli_fetch_assoc( $result ) ){
-					echo  '<h1 class="text-secondary">' . $row['login'] . '</h1>';
-				}				 
-	    	}	
-	    ?> 	<!--Выводим из базы данных пользователя-->
+	    <?php echo  '<h1 class="text-secondary">' . $_SESSION['logged_admin']->login . '</h1>'; ?> 	<!--Выводим из базы данных пользователя-->
 	    <a class="btn btn-secondary" href="log_out.php">Выйти</a> 	<!--Выход из аккаунта-->
 	  </nav>
 	</div>
@@ -124,10 +94,7 @@
 	    <tr>
 	      <th scope="col">#</th>
 	      <th scope="col">id</th>
-	      <th scope="col">login</th>
-	      <th scope="col">email</th>
-	      <th scope="col">password</th>
-	      <th scope="col">date</th>
+	      <th scope="col">category_name</th>
 	      <th scope="col">DEL</th>
 	    </tr>
 	  </thead>
@@ -135,7 +102,7 @@
 
 		<?php  
 		//	 Выполняем запрос к базе данных
-		if ($result = mysqli_query( $link, 'SELECT * FROM users ORDER BY id' ) ) {
+		if ($result = mysqli_query( $link, 'SELECT * FROM categories ORDER BY id' ) ) {
 			// Извлекает результирующий ряд в виде ассоциативного массива
 			 while( $row = mysqli_fetch_assoc( $result ) ){
 			 	//	Подщтьываем количество строк
@@ -144,23 +111,19 @@
 			 		'<tr>' .
 				 	 	'<th scope="row">' . $number . '</th>' .
 				 	 	'<td>' . $row['id'] . '</td>' .
-				 	 	'<td><div class="edit_login" data-id="' . $row['id']. '" name="login" contenteditable>' . $row['login'] . '</div></td>' .
-				 	 	'<td><div class="edit_email" data-id="' . $row['id']. '" name="email" contenteditable>' . $row['email'] . '</div></td>' .
-				 	 	'<td><div class="edit_password" data-id="' . $row['id']. '" name="password" contenteditable>' . 
-				 	 		mb_substr( $row['password'], 0, 10, 'UTF-8' ) . '...' . '</div></td>' .
-				 	 	'<td>' . $row['date'] . '</td>' .
+				 	 	'<td><div class="edit_category" data-id="' . $row['id']. '" name="category_name" contenteditable>' . $row['category_name'] . '</div></td>' .
 				 	 	'<th><div><a class="btn btn-danger" href="?del=' . $row['id'] . ' ">Удалить</a></div></th>' .
 		        	'</tr>';
 			    }
 			    	if ( isset( $_GET['del'] ) ) {
 						$id = $_GET['del'];
 						//	Делаем запрос к бд на изменения login по id
-						$query = " DELETE FROM users WHERE id = $id ";
+						$query = " DELETE FROM categories WHERE id = $id ";
 						//	Выполняем данный запрос
 						$res  = mysqli_query( $link, $query );
-						echo '<div class="alert alert-danger d-flex justify-content-center" role="alert"><h3>Вы успешно удалили пользователя с id' . $id  . '</h3></div>';
+						echo '<div class="alert alert-danger d-flex justify-content-center" role="alert"><h3>Вы успешно удалили компанию с id' . $id  . '</h3></div>';
 						//header("Refresh:0;  url=users.php");
-						echo '<div class="text-center m-3"><a class="btn btn-warning" href="users.php">Close helper</a></div>';
+						echo '<div class="text-center m-3"><a class="btn btn-warning" href="category.php">Close helper</a></div>';
 						
 					}
 			    //	Освобождаем память, занятую результатами запроса

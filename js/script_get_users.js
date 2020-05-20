@@ -130,7 +130,7 @@ $( function() {
 		//	Переменной newVal присваевается значение установленное в таблице
 		newVal = $( this ).text();
 		//	Проверяем новое значение на длину
-		if ( newVal.length > 5) {
+		if ( newVal.length > 5 && newVal.length < 20 ) {
 			//	Если стараня переменная не равна новой то 
 			if ( newVal != oldVal ) {
 				//	Отправляем обозначенный запрос запрос 
@@ -153,7 +153,7 @@ $( function() {
 			} else {
 				// Проверка в консоли
 				console.log( "Значеник не изменено" );
-				alert( 'Значение не изменено' );
+				alert( 'Password должен быть не менее 6 символов и не больше 20! Повторите попытку!' );
 			}
 		} else {
 			window.location.reload();
@@ -289,7 +289,7 @@ $( function() {
 		//	Переменной newVal присваевается значение установленное в таблице
 		newVal = $( this ).text();
 		//	Проверяем новое значение на длину
-		if ( newVal.length > 5) {
+		if ( newVal.length > 5 && newVal.length < 20) {
 			//	Если стараня переменная не равна новой то 
 			if ( newVal != oldVal ) {
 				//	Отправляем обозначенный запрос запрос 
@@ -316,7 +316,7 @@ $( function() {
 			}
 		} else {
 			window.location.reload();
-			alert( 'Password должен быть не менее 6 символов! Повторите попытку!' );
+			alert( 'Password должен быть не менее 5 символов и не больше 20! Повторите попытку!' );
 		}
 	});
 
@@ -398,7 +398,7 @@ $( function() {
 		//	Переменной newVal присваевается значение установленное в таблице
 		newVal = $( this ).text();
 		//	Проверяем новое значение на длину
-		if ( newVal.length > 5) {
+		if ( newVal.length > 5 && newVal.length < 20) {
 			//	Если стараня переменная не равна новой то 
 			if ( newVal != oldVal ) {
 				//	Отправляем обозначенный запрос запрос 
@@ -425,7 +425,62 @@ $( function() {
 			}
 		} else {
 			window.location.reload();
-			alert( 'Password должен быть не менее 6 символов! Повторите попытку!' );
+			alert( 'Password должен быть не менее 6 символов и не больше 20! Повторите попытку!' );
+		}
+	});
+
+
+
+
+
+	//Запрос на category
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_category' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_category' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length > 2 && newVal.length < 20) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'category.php',
+					type: 'POST',
+					data: { new_val_category: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Если категория не будет изменена то такая категория уже существует.' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Категория должна содеражать не мение 3 символов и не более 20! Повторите попытку!' );
 		}
 	});
 

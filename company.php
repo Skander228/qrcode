@@ -1,5 +1,7 @@
 <?php 
 	require "includes/db.php";
+	require "includes/db_conect.php";
+	include "includes/function.php";
 
 ?>
 
@@ -28,7 +30,9 @@
 <!--***********************************************************************************************************************************************************************************************************Company**************************************************************************************************************************************************************************************************************************************************-->
 	
 	<?php if ( isset( $_SESSION['logged_company'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
-
+	<?php 
+		$id = $_SESSION['logged_company']->id;	
+	?>
 	<div class="pos-f-t">
 	  <div class="collapse" id="navbarToggleExternalContent">
 	    <div class="bg-dark p-4">
@@ -39,10 +43,82 @@
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
-	    <?php echo  '<h1 class="text-secondary">' . $_SESSION['logged_company']->company . '</h1>'; ?> 	<!--Выводим из базы данных company-->
+	    <?php 
+	    	if ( $result = mysqli_query( $link, "SELECT * FROM companies WHERE id = $id " ) ) {
+				while( $row = mysqli_fetch_assoc( $result ) ){
+					echo  '<h1 class="text-secondary">' . $row['company'] . '</h1>';
+				}				 
+	    	}	
+	    ?> 	<!--Выводим из базы данных company-->
 	    <a class="btn btn-secondary" href="log_out.php">Выйти</a> 	<!--Выход из аккаунта-->
 	  </nav>
 	</div>
+
+	<div class="d-flex justify-content-between">
+		<div class="jumbotron jumbotron-fluid mr-5 mt-5 ml-5 p-3">
+			<div class="container row justify-content-center">
+				<div class="d-flex justify-content-around mt-5">
+					<?php 
+						if ( $result = mysqli_query( $link, "SELECT * FROM companies WHERE id = $id " ) ) {
+							while( $row = mysqli_fetch_assoc( $result ) ){
+								echo '<img class="rounded-circle" src=https://s.gravatar.com/avatar/' 
+									. md5( $row['email'] ) . '?s=280&d=monsterid>';
+							}				 
+				    	}
+					  
+					?> <!--Добавляем изоображения пользователя через систему граватар, так же есть система оценок для определенной аудитории изночально стоит оценка G но так же их можно дополнить-->	
+				</div>
+				<div>
+					<div class="line-group">
+						
+						<h2>Ваш комания:</h2>
+						<?php 
+							if ( $result = mysqli_query( $link, "SELECT * FROM companies WHERE id = $id " ) ) {
+								while( $row = mysqli_fetch_assoc( $result ) ){
+									echo '<div class="edit_company mb-3" data-id="' . $_SESSION['logged_company']->id . '" name="login" contenteditable><h2 class="text-primary">' .  $row['company'] . '</h2></div>';
+								}				 
+					    	}
+					    ?><br>
+
+						<h2>Ваш email:</h2>
+						<?php 
+							if ( $result = mysqli_query( $link, "SELECT * FROM companies WHERE id = $id " ) ) {
+								while( $row = mysqli_fetch_assoc( $result ) ){
+									echo '<div class="edit_company_email mb-3" data-id="' . $_SESSION['logged_company']->id . '" name="login" contenteditable><h2 class="text-primary">' .  $row['email'] . '</h2></div>';
+								}				 
+					    	}
+					    ?><br>
+
+					    <h2>Ваш password:</h2>
+						<?php 
+							if ( $result = mysqli_query( $link, "SELECT * FROM companies WHERE id = $id " ) ) {
+								while( $row = mysqli_fetch_assoc( $result ) ){
+									echo '<div class="edit_company_password mb-3" data-id="' . $_SESSION['logged_company']->id. '" name="login" contenteditable><h2 class="text-primary">' . mb_substr( $row['password'], 0, 10, 'UTF-8' )   . '...</h2></div>';
+								}				 
+					    	}
+					    ?>
+					
+						<h3 class="mt-5 mb-4">Для редактирования аватар:</h3>
+						<p class="m-2"><h4>1) Войдите в систему Gravatar</h4></p>
+						<a href="https://wordpress.com/log-in/ru" class="btn btn-primary">Войти</a>
+						<p class="m-2"><h4>2) Загрузите файл в системе Gravatar</h4></p>
+						<a href="https://ru.gravatar.com/gravatars/new/computer" class="btn btn-primary">Выполнить</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="jumbotron jumbotron-fluid mr-5 mt-5 ml-5 p-3">
+		 	<div class="container ">
+		    	<h2>Не выходите из дома</h2>
+		    	<br>
+				<script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5qrqcdh9rhw&amp;m=7&amp;c=e63100&amp;cr1=ffffff&amp;f=arial&amp;l=0&amp;bv=90&amp;lx=-420&amp;ly=420&amp;hi=20&amp;he=7&amp;hc=a8ddff&amp;rs=80" async="async"></script>
+		  	</div>
+		</div>
+	</div>
+
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/script_get_users.js"></script>
 
 	<?php else : ?>		<!--Иначе выполняется от компанмй-->
 
