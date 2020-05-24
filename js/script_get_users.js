@@ -484,4 +484,264 @@ $( function() {
 		}
 	});
 
+
+
+
+
+		//Запрос на products
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_product_name' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_product_name' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length > 1 && newVal.length < 30) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'products.php',
+					type: 'POST',
+					data: { new_val_products: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Товар успешно изменен.' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Товар должен содеражать не мение 2 символов и не более 30! Повторите попытку!' );
+		}
+	});
+
+
+	//Запрос на products_description
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_product_description' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_product_description' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length > 1 && newVal.length < 300) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'products.php',
+					type: 'POST',
+					data: { new_val_products_description: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Описание успешно изменен.' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Описание должен содеражать не мение 2 символов и не более 300! Повторите попытку!' );
+		}
+	});
+
+		//Запрос на products edit_product_location
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_product_location' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_product_location' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length > 1 && newVal.length < 100) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'products.php',
+					type: 'POST',
+					data: { new_val_products_location: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Локация успешно изменена.' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Локация должен содеражать не мение 2 символов и не более 100! Повторите попытку!' );
+		}
+	});
+
+			//Запрос на products edit_id_company_product
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_id_company_product' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_id_company_product' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length >= 1 && newVal.length < 4) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'products.php',
+					type: 'POST',
+					data: { new_val_id_company_product: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Id успешно изменено.' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Id должен содеражать не мение 1 символа и не более 4! Повторите попытку!' );
+		}
+	});
+
+	//Запрос на products edit_id_company_product
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_id_categoty_product' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_id_category_product' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length >= 1 && newVal.length < 4) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'products.php',
+					type: 'POST',
+					data: { new_val_id_category_product: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Id успешно изменено.' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Id должен содеражать не мение 1 символа и не более 4! Повторите попытку!' );
+		}
+	});
+
 } );

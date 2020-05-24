@@ -65,6 +65,19 @@
 
 				</div>
 
+				<div class="dropdown">
+
+					<button class="btn btn-secondary dropdown-toggle ml-2" type="button" id="dropdownMenuButton"
+				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление товарами
+					</button>
+
+					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+						<a href="add_products.php" class="dropdown-item btn btn-secondary">Добавить товар</a>
+						<a href="products.php" class="dropdown-item btn btn-secondary">Управление товарами</a>
+					</div>
+
+				</div>
+
 			</div>
 
 	    </div>

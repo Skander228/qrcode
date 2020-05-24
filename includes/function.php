@@ -241,8 +241,7 @@
 			return true;
 		}	else {
 			return false; 
-		}
-			
+		}		
 	}
 
 				//	Обновление данных пользователя(category_name) для categories
@@ -270,7 +269,119 @@
 			}	else {
 				return false; 
 			}
-		}
-			
+		}	
+	}
+
+
+
+
+	//	Обновление данных пользователя(product_name) для products
+	function update_product_name() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_products'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE products SET product_name = '$value' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 */
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}	
+	}
+
+		//	Обновление данных пользователя update_product_description
+	function update_product_description() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_products_description'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE products SET description = '$value' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 */
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}	
+	}
+
+	//	Обновление данных пользователя update_product_location
+	function update_product_location() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_products_location'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE products SET location = '$value' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 */
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}	
+	}
+
+	//	Обновление данных пользователя update_product_id_company
+	function update_product_id_company() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_id_company_product'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE products SET id_company = '$value' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 */
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}	
+	}
+
+	//	Обновление данных пользователя(update_product_id_category)
+	function update_product_id_category() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_id_category_product'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE products SET id_category = '$value' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 */
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}	
 	}
 ?>
