@@ -47,11 +47,7 @@
 					
 				<div class="dropdown">
 
-					<a href="admin.php" class="btn btn-secondary mr-2">Главное меню</a>
-					
-					<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
-
-					<button class="btn btn-secondary dropdown-toggle ml-2 mr-2" type="button" id="dropdownMenuButton"
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
 				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление пользователя
 					</button>
 
@@ -76,14 +72,43 @@
 
 				</div>
 
+				<div class="dropdown">
+
+					<button class="btn btn-secondary dropdown-toggle ml-2" type="button" id="dropdownMenuButton"
+				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление товарами
+					</button>
+
+					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+						<a href="add_products.php" class="dropdown-item btn btn-secondary">Добавить товар</a>
+						<a href="products.php" class="dropdown-item btn btn-secondary">Управление товарами</a>
+					</div>
+
+				</div>
+
+				<div class="dropdown">
+
+					<button class="btn btn-secondary dropdown-toggle ml-2" type="button" id="dropdownMenuButton"
+				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление запросами
+					</button>
+
+					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+						<a href="add_inquiries.php" class="dropdown-item btn btn-secondary">Добавить запрос</a>
+						<a href="inquiries.php" class="dropdown-item btn btn-secondary">Управление запросами</a>
+					</div>
+
+				</div>
+
 			</div>
 
 	    </div>
 	  </div>
 	  <nav class="navbar navbar-dark bg-dark mb-2">
-	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
+	  	<div>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <a href="admin.php" class="btn btn-secondary ml-2">Главное меню</a>
+		</div>
 	    <?php echo  '<h1 class="text-secondary">' . $_SESSION['logged_admin']->login . '</h1>'; ?> 	<!--Выводим из базы данных пользователя-->
 	    <a class="btn btn-secondary" href="log_out.php">Выйти</a> 	<!--Выход из аккаунта-->
 	  </nav>

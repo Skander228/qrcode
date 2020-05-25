@@ -35,12 +35,10 @@
 	    <div class="bg-dark p-4">	
 
 			<div class="d-flex align-items-center">
-
-				<a href="admin_signup.php" class="btn btn-secondary">Admin регистрация</a>
 					
 				<div class="dropdown">
 
-					<button class="btn btn-secondary dropdown-toggle ml-2" type="button" id="dropdownMenuButton"
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
 				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление пользователя
 					</button>
 
@@ -78,15 +76,31 @@
 
 				</div>
 
+				<div class="dropdown">
+
+					<button class="btn btn-secondary dropdown-toggle ml-2" type="button" id="dropdownMenuButton"
+				  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление запросами
+					</button>
+
+					<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+						<a href="add_inquiries.php" class="dropdown-item btn btn-secondary">Добавить запрос</a>
+						<a href="inquiries.php" class="dropdown-item btn btn-secondary">Управление запросами</a>
+					</div>
+
+				</div>
+
 			</div>
 
 	    </div>
 	  </div>
 
 	  <nav class="navbar navbar-dark bg-dark">
-	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
+	  	<div>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <a href="admin_signup.php" class="btn btn-secondary ml-2">Admin регистрация</a>
+		</div>
 	    <?php 
 	    	if ( $result = mysqli_query( $link, "SELECT * FROM admin WHERE id = $id " ) ) {
 				while( $row = mysqli_fetch_assoc( $result ) ){

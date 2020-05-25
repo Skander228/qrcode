@@ -1,18 +1,22 @@
 <?php  
 	require "includes/db.php";
 	require "includes/db_conect.php";
-	include "includes/user_authorization.php";
+	include "includes/admin_add_product.php";
 
 ?>
 
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
+
+	<?php if ( isset( $_SESSION['logged_admin'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
+
 	<div class="container mt-2" >
 		<div class="form-group">
 			<h1>Добавление товара</h1>
@@ -21,27 +25,26 @@
 
 			<div class="form-group">
 				<input class="form-control" id="name_product" placeholder="Введите название товара"  
-					type="text" name="login_1" value="<?php echo @$data['login_1']; ?>">
+					type="text" name="name_product" value="<?php echo @$data['name_product']; ?>">
 			</div>
 
 			<div class="form-group">
-				<input class="form-control" id="description" placeholder="Введите описание товара"  
-					type="text" name="login_1" value="<?php echo @$data['login_1']; ?>">
+				<textarea class="form-control" placeholder="Введите описание товара" type="text" name="description" id="description" 
+				value="<?php echo @$data['description']; ?>" rows="3"></textarea>
 			</div>
 
 			<div class="form-group">
-				<input class="form-control" id="location" placeholder="Введите место нахождения товара"  
-					type="text" name="login_1" value="<?php echo @$data['login_1']; ?>">
+				<textarea class="form-control" placeholder="Введите место нахождения товара" name="location" id="location" rows="2" value="<?php echo @$data['location']; ?>"></textarea>
 			</div>
 
 		    <div class="form-group">
-			  <select id="id_company" class="form-control">
-			    <option selected>Выберите компанию</option>
+			  <select id="id_company" name="id_company" class="form-control">
+			    <option selected class="form-control" name="id_category">Выберите компанию</option>
 				    <?php  
-				    	if ($result = mysqli_query( $link, 'SELECT * FROM companies ORDER BY id' ) ) {
+				    	if ( $result = mysqli_query( $link, 'SELECT * FROM companies ORDER BY id' ) ) {
 							// Извлекает результирующий ряд в виде ассоциативного массива
 							while( $row = mysqli_fetch_assoc( $result ) ){
-				    			echo '<option>' . $row['company'] . '</option>';
+				    			echo '<option class="form-control" name="id_company">' . $row['company'] . '</option>';
 				    		}
 						}
 				    ?>
@@ -49,13 +52,13 @@
 			</div>
 
 			<div class="form-group">
-			  <select id="id_category" class="form-control">
-			    <option selected>Выберите категорию</option>
+			  <select id="id_category" name="id_category" class="form-control">
+			    <option selected class="form-control" name="id_category">Выберите категорию</option>
 				    <?php  
-				    	if ($result = mysqli_query( $link, 'SELECT * FROM categories ORDER BY id' ) ) {
+				    	if ( $result = mysqli_query( $link, 'SELECT * FROM categories ORDER BY id' ) ) {
 							// Извлекает результирующий ряд в виде ассоциативного массива
 							while( $row = mysqli_fetch_assoc( $result ) ){
-				    			echo '<option>' . $row['category_name'] . '</option>';
+				    			echo '<option class="form-control" name="id_category">' . $row['category_name'] . '</option>';
 				    		}
 				    		mysqli_free_result( $result );
 						}
@@ -82,6 +85,43 @@
 			<div class="d-flex align-items-center"><h1 class="form-group" style="font-size: 90px;">Kkhemiri QRcode</h1></div>
 		</div>
 	</div>
+
+	<?php else: ?>
+
+	<div class="jumbotron jumbotron-fluid form-group mb-0 p-0">
+		<div class="justify-content-center mb-0 form-group d-flex">
+			<div class="d-flex align-items-center">
+				<img src="includes/image/logo_2.png" class="mx-auto d-block col-4 m-lg-0">
+				<h1 style="font-size: 90px;">Kkhemiri QRcode</h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="pos-f-t">
+	  <div class="collapse" id="navbarToggleExternalContent">
+	    <div class="bg-dark p-4">
+			<div class="d-flex align-items-center">
+				<div class="dropdown">
+					<a href="/" class="btn btn-secondary">Вернутся на главную</a>
+				</div>
+			</div>
+	    </div>
+	  </div>
+	  <nav class="navbar navbar-dark bg-dark">
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+	     	<span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div>
+	    	<a class="btn btn-secondary" href="company.php">Предприятие</a>
+	    	<a class="btn btn-secondary" href="users_signup.php">Регистрация</a>
+	    	<a class="btn btn-secondary" href="users_login.php">Вход</a>
+		</div>
+	  </nav>
+	</div>
+
+		<h1 class="d-flex justify-content-center mt-5">У вас нет прав на данную страницу</h1>
+
+	<?php endif; ?>
 
 </body>
 </html>
