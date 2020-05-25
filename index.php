@@ -5,6 +5,7 @@
 
 	/*git remote add origin git@github.com:Skander228/qrcode.git
 	git push -u origin master*/
+	///
  
 ?>
 <html>
