@@ -38,8 +38,8 @@
 			</div>
 
 		    <div class="form-group">
-			  <select id="id_company" name="id_company" class="form-control">
-			    <option selected class="form-control" name="id_category">Выберите компанию</option>
+			  <select name="id_company" class="form-control">
+			    <option selected class="form-control" name="id_company">Выберите компанию</option>
 				    <?php  
 				    	if ( $result = mysqli_query( $link, 'SELECT * FROM companies ORDER BY id' ) ) {
 							// Извлекает результирующий ряд в виде ассоциативного массива
@@ -52,7 +52,7 @@
 			</div>
 
 			<div class="form-group">
-			  <select id="id_category" name="id_category" class="form-control">
+			  <select name="id_category" class="form-control">
 			    <option selected class="form-control" name="id_category">Выберите категорию</option>
 				    <?php  
 				    	if ( $result = mysqli_query( $link, 'SELECT * FROM categories ORDER BY id' ) ) {

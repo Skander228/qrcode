@@ -70,8 +70,17 @@ if ( isset( $data['b_product'] ) ) {
 		$products->product_name = $data['name_product'];
 		$products->description = $data['description'];
 		$products->location = $data['location'];
-		$products->id_company = $data['id_company'];
-		$products->id_category = $data['id_category'];
+
+		// Выпонлняем запрос на поиск компании и если она есть то берем id  и заносим id в базу
+		$company = mysqli_query( $link, "SELECT id FROM companies WHERE company = '" . $data['id_company'] .  "' " );
+		$row = mysqli_fetch_assoc( $company );
+		$products->id_company =  $row['id'];
+
+		$company = mysqli_query( $link, "SELECT id FROM categories WHERE category_name = '" . $data['id_category'] . "' " );
+		$row = mysqli_fetch_assoc( $company );
+		$products->id_category = $row['id'];
+		
+
 		// 	Cохраняем объект $categories в таблице 
 		R::store( $products );
 		echo '<div class="alert alert-success d-flex justify-content-center" role="alert"><h3> Вы успешно добавили категорию! </h3></div><hr>';

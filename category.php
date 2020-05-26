@@ -127,7 +127,7 @@
 
 		<?php  
 		//	 Выполняем запрос к базе данных
-		if ($result = mysqli_query( $link, 'SELECT * FROM categories ORDER BY id' ) ) {
+		if ($result = mysqli_query( $link, 'SELECT * FROM categories ORDER BY id ' ) ) {
 			// Извлекает результирующий ряд в виде ассоциативного массива
 			 while( $row = mysqli_fetch_assoc( $result ) ){
 			 	//	Подщтьываем количество строк
