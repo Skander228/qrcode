@@ -1,7 +1,7 @@
 <?php  
 	require "includes/db.php";
 	require "includes/db_conect.php";
-	include "includes/admin_add_product.php";
+	include "includes/admin_add_inquiries.php";
 
 ?>
 
@@ -18,33 +18,21 @@
 	<?php if ( isset( $_SESSION['logged_admin'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
 
 	<div class="container mt-2" >
+
 		<div class="form-group">
-			<h1>Добавление товара</h1>
+			<h1>Добавление запрса</h1>
 		</div>
+
 		<form class="" id="emailForm" method="POST" style="margin-bottom: 20px;">
 
 			<div class="form-group">
-				<input class="form-control" id="name_product" placeholder="Введите название товара"  
-					type="text" name="name_product" value="<?php echo @$data['name_product']; ?>">
-			</div>
-
-			<div class="form-group">
-				<textarea class="form-control" placeholder="Введите описание товара" type="text" name="description" id="description" 
-				value="<?php echo @$data['description']; ?>" rows="3"></textarea>
-			</div>
-
-			<div class="form-group">
-				<textarea class="form-control" placeholder="Введите место нахождения товара" name="location" id="location" rows="2" value="<?php echo @$data['location']; ?>"></textarea>
-			</div>
-
-		    <div class="form-group">
-			  <select name="id_company" class="form-control">
-			    <option selected class="form-control">Выберите компанию</option>
+			  <select name="id_product" class="form-control">
+			    <option selected class="form-control" >Выберите товар</option>
 				    <?php  
-				    	if ( $result = mysqli_query( $link, 'SELECT * FROM companies ORDER BY id' ) ) {
+				    	if ( $result = mysqli_query( $link, 'SELECT * FROM products ORDER BY id' ) ) {
 							// Извлекает результирующий ряд в виде ассоциативного массива
 							while( $row = mysqli_fetch_assoc( $result ) ){
-				    			echo '<option class="form-control">' . $row['company'] . '</option>';
+				    			echo '<option class="form-control" value=" ' .  $row['id'] .  ' ">' . $row['product_name'] . '</option>';
 				    		}
 						}
 				    ?>
@@ -52,24 +40,26 @@
 			</div>
 
 			<div class="form-group">
-			  <select name="id_category" class="form-control">
-			    <option selected class="form-control">Выберите категорию</option>
+			  <select name="id_users" class="form-control">
+			    <option selected class="form-control">Выберите пользователя</option>
 				    <?php  
-				    	if ( $result = mysqli_query( $link, 'SELECT * FROM categories ORDER BY id' ) ) {
+				    	if ( $result = mysqli_query( $link, 'SELECT * FROM users ORDER BY id' ) ) {
 							// Извлекает результирующий ряд в виде ассоциативного массива
 							while( $row = mysqli_fetch_assoc( $result ) ){
-				    			echo '<option class="form-control">' . $row['category_name'] . '</option>';
+				    			echo '<option class="form-control">' . $row['login'] . '</option>';
 				    		}
-				    		mysqli_free_result( $result );
 						}
-						mysqli_close( $link );
 				    ?>
 			  </select>
 			</div>
 
-			 <div class="form-group">
-				<button type="submit" id="button" name="b_product" class="btn btn-primary">Добавить товар</button>		
-				<a class="btn btn-warning" href="products.php">Редактировать товар</a>
+			<div class="form-group">
+				<textarea class="form-control" placeholder="Введите описание проблемы" type="text" name="description" value="<?php echo @$data['description']; ?>" rows="3"></textarea>
+			</div>
+
+			<div class="form-group">
+				<button type="submit" id="button" name="b_inquiries" class="btn btn-primary">Отправить запрос</button>		
+				<a class="btn btn-warning" href="inquiries.php">Редактировать запрос</a>
 			</div>
 
 			<div class="form-group">

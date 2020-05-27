@@ -53,12 +53,12 @@ if ( isset( $data['b_product'] ) ) {
 	}
 
 	// 	trim убирает все пробелы 
-	if ( trim( $data['id_company'] ) == '' ) {
+	if ( trim( $data['id_company'] ) == 'Выберите компанию' ) {
 		$errors[] = 'Вы не выбрали компанию! Выберите компанию!';
 	}
 
 	// 	trim убирает все пробелы 
-	if ( trim( $data['id_category'] ) == '' ) {
+	if ( trim( $data['id_category'] ) == 'Выберите категорию' ) {
 		$errors[] = 'Вы не выбрали категорию для товара! Выберите категорию!';
 	}
 

@@ -744,4 +744,165 @@ $( function() {
 		}
 	});
 
+
+
+
+
+
+
+			//Запрос на products edit_inquiries_id_product
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_inquiries_id_product' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_inquiries_id_product' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length >= 1 && newVal.length < 4) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'inquiries.php',
+					type: 'POST',
+					data: { new_val_inquiries_id_product: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Если такой товар существет то, Id товара успешно изменено.' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Id товара должено содеражать не мение 1 символа и не более 4! Повторите попытку!' );
+		}
+	});
+
+
+		//Запрос на products edit_inquiries_id_users
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_inquiries_id_users' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_inquiries_id_users' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length >= 1 && newVal.length < 4) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'inquiries.php',
+					type: 'POST',
+					data: { new_val_inquiries_id_users: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Если такой пользователь существет то, Id пользователя успешно изменено.' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Id пользователя должено содеражать не мение 1 символа и не более 4! Повторите попытку!' );
+		}
+	});
+
+
+			//Запрос на products edit_inquiries_id_users
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_inquiries_description' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_inquiries_description' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length >= 5 && newVal.length < 200) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'inquiries.php',
+					type: 'POST',
+					data: { new_val_inquiries_description: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Описание успешно изменено!' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Описание должено содеражать не мение 5 символа и не более 200! Повторите попытку!' );
+		}
+	});
+
 } );

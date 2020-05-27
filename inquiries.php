@@ -7,9 +7,29 @@
 <?php  
 	// 	Принимаем запрос и определяем его в функцию для ...
 	//	Определяет, была ли установлена переменная значением, отличным от NULL
-	if ( isset( $_POST['new_val_category'] ) ) {	
+	if ( isset( $_POST['new_val_inquiries_id_product'] ) ) {	
 		//	Применяем функцию обнавления login
-		if ( update_category() ) {
+		if ( update_inquiries_id_product() ) {
+			// 	Проверка в консоли
+			exit( "It is ok_ 2" );
+		} else {
+			exit( "Error_ 2" );
+		}
+	}  
+
+	if ( isset( $_POST['new_val_inquiries_id_users'] ) ) {	
+		//	Применяем функцию обнавления login
+		if ( update_inquiries_id_users() ) {
+			// 	Проверка в консоли
+			exit( "It is ok_ 2" );
+		} else {
+			exit( "Error_ 2" );
+		}
+	}  
+
+	if ( isset( $_POST['new_val_inquiries_description'] ) ) {	
+		//	Применяем функцию обнавления login
+		if ( update_inquiries_description() ) {
 			// 	Проверка в консоли
 			exit( "It is ok_ 2" );
 		} else {
@@ -119,7 +139,10 @@
 	    <tr>
 	      <th scope="col">#</th>
 	      <th scope="col">id</th>
-	      <th scope="col">category_name</th>
+	      <th scope="col">id_product</th>
+	      <th scope="col">id_users</th>
+	      <th scope="col">description</th>
+	      <th scope="col">date</th>
 	      <th scope="col">DEL</th>
 	    </tr>
 	  </thead>
@@ -127,7 +150,7 @@
 
 		<?php  
 		//	 Выполняем запрос к базе данных
-		if ($result = mysqli_query( $link, 'SELECT * FROM categories ORDER BY id ' ) ) {
+		if ($result = mysqli_query( $link, 'SELECT * FROM inquiries ORDER BY id ' ) ) {
 			// Извлекает результирующий ряд в виде ассоциативного массива
 			 while( $row = mysqli_fetch_assoc( $result ) ){
 			 	//	Подщтьываем количество строк
@@ -136,19 +159,22 @@
 			 		'<tr>' .
 				 	 	'<th scope="row">' . $number . '</th>' .
 				 	 	'<td>' . $row['id'] . '</td>' .
-				 	 	'<td><div class="edit_category" data-id="' . $row['id']. '" name="category_name" contenteditable>' . $row['category_name'] . '</div></td>' .
+				 	 	'<td><div class="edit_inquiries_id_product" data-id="' . $row['id']. '" name="category_name" contenteditable>' . $row['id_product'] . '</div></td>' .
+				 	 	'<td><div class="edit_inquiries_id_users" data-id="' . $row['id'] . '" name="category_name" contenteditable>' . $row['id_users'] . '</div></td>' .
+				 	 	'<td><div class="edit_inquiries_description" data-id="' . $row['id'] . '" name="category_name" contenteditable>' . $row['description'] . '</div></td>' .
+				 	 	'<td><div class="edit_category" data-id="' . $row['id'] . '" name="category_name" contenteditable>' . $row['date'] . '</div></td>' .
 				 	 	'<th><div><a class="btn btn-danger" href="?del=' . $row['id'] . ' ">Удалить</a></div></th>' .
 		        	'</tr>';
 			    }
 			    	if ( isset( $_GET['del'] ) ) {
 						$id = $_GET['del'];
 						//	Делаем запрос к бд на изменения login по id
-						$query = " DELETE FROM categories WHERE id = $id ";
+						$query = " DELETE FROM inquiries WHERE id = $id ";
 						//	Выполняем данный запрос
 						$res  = mysqli_query( $link, $query );
 						echo '<div class="alert alert-danger d-flex justify-content-center" role="alert"><h3>Вы успешно удалили компанию с id' . $id  . '</h3></div>';
 						//header("Refresh:0;  url=users.php");
-						echo '<div class="text-center m-3"><a class="btn btn-warning" href="category.php">Close helper</a></div>';
+						echo '<div class="text-center m-3"><a class="btn btn-warning" href="inquiries.php">Close helper</a></div>';
 						
 					}
 			    //	Освобождаем память, занятую результатами запроса
@@ -157,6 +183,7 @@
 			//  Закрывает ранее открытое соединение с базой данных
 			mysqli_close( $link );
 		?>
+
 	  </tbody>
 	</table>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>

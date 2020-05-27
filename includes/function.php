@@ -384,4 +384,75 @@
 			return false; 
 		}	
 	}
+
+
+
+
+
+
+	//	Обновление данных пользователя(update_inquiries_id_product)
+	function update_inquiries_id_product() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_inquiries_id_product'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE inquiries SET id_product = '$value' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 */
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}
+	}
+
+	//	Обновление данных пользователя(update_inquiries_id_users)
+	function update_inquiries_id_users() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_inquiries_id_users'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE inquiries SET id_users = '$value' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 */
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}	
+	}
+
+		//	Обновление данных пользователя(update_inquiries_id_users)
+	function update_inquiries_description() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		/*	Экранирует специальные символы в строке для использования
+		в SQL-выражении, используя текущий набор символов соединения*/
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_inquiries_description'] );
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE inquiries SET description = '$value' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 */
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}	
+	}
 ?>
