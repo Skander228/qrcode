@@ -905,4 +905,61 @@ $( function() {
 		}
 	});
 
+
+
+
+/*
+				//Запрос на products edit_category_comany
+
+			// Блокируем клавишу Enter для избежания бага
+	$( '.edit_category_comany' ).keypress( function( e ) {
+		if ( e.which == 13 ) {
+			return false;
+		}
+	} );
+
+	//	Если фокус на классе edit то 
+	$( '.edit_category_comany' ).focus( function() {
+		//	Записываем в переменную oldVal обозначенное значение
+		oldVal = $( this ).text();
+		//	Присваеваем id значение равное category 
+		id = $( this ).data( 'id' );
+		//	Если вокус изменен то  
+	} ).blur( function() {
+		//	Переменной newVal присваевается значение установленное в таблице
+		newVal = $( this ).text();
+		//	Проверяем новое значение на длину
+		if ( newVal.length >= 0 && newVal.length < 20) {
+			//	Если стараня переменная не равна новой то 
+			if ( newVal != oldVal ) {
+				//	Отправляем обозначенный запрос запрос 
+				$.ajax ( {
+					url: 'edit_product_company.php',
+					type: 'POST',
+					data: { new_val_category_comany: newVal, id: id },
+					//	Если запрос прошел успешно то принимаем ответ в переменную (res)
+					success: function( res ) {
+						// Проверка в консоли
+						console.log( res );
+						window.location.reload();
+						alert( 'Описание успешно изменено!' );
+					}, 
+					//	Если запрос не дощел то 
+					error: function() {
+						alert( 'Error!' );
+					}
+				} );
+			} else {
+				// Проверка в консоли
+				console.log( "Значеник не изменено" );
+				alert( 'Значение не изменено' );
+			}
+		} else {
+			window.location.reload();
+			alert( 'Описание должено содеражать не мение 5 символа и не более 200! Повторите попытку!' );
+		}
+	});*/
+
+
+
 } );

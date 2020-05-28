@@ -36,7 +36,22 @@
 	<div class="pos-f-t">
 	  <div class="collapse" id="navbarToggleExternalContent">
 	    <div class="bg-dark p-4">
-			<!--Вставить компаненты от открывающейся понели-->
+			
+			<div class="dropdown">
+
+				<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+			  		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Управление товарами
+				</button>
+
+				<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item btn btn-secondary" href="add_product_company.php">Добавить товар</a>
+					<a class="dropdown-item btn btn-secondary" href="edit_product_company.php">Редактировать товар</a>
+				</div>
+
+				<a class="btn btn-secondary" href="company_inquiries.php">Управление запросам</a>
+
+			</div>		
+
 	    </div>
 	  </div>
 	  <nav class="navbar navbar-dark bg-dark">

@@ -455,4 +455,29 @@
 			return false; 
 		}	
 	}
+
+
+
+
+/*
+					//	Обновление данных пользователя(category_name) для categories
+	function update_ategory_comany() {
+		//	Получаем видимость на соединение с базой данных
+		global $link;
+		//	Приводим к типу int
+		$id = ( int )$_POST['id'];
+
+		//	Делаем запрос к бд на изменения password по id
+		$query = " UPDATE products SET id_category = '$id' WHERE id = '$id' ";
+		//	Выполняем данный запрос
+		$res  = mysqli_query( $link, $query );
+		/*	Получает число строк, затронутых предыдущей операцией MySQL
+		затронута 1 строка должен вернуть 1 иначе 0 
+		if ( mysqli_affected_rows( $link ) ) {
+			return true;
+		}	else {
+			return false; 
+		}	
+	}
+	*/
 ?>
