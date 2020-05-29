@@ -464,8 +464,14 @@
 	function update_ategory_comany() {
 		//	Получаем видимость на соединение с базой данных
 		global $link;
+
+		$value = mysqli_real_escape_string( $link, $_POST['new_val_category_comany'] );
 		//	Приводим к типу int
 		$id = ( int )$_POST['id'];
+
+		$categories = R::count( 'categories', 'category_name = ?', array( $_POST['new_val_category_comany'] ) );
+
+		if ( $categories == 1 ) {
 
 		//	Делаем запрос к бд на изменения password по id
 		$query = " UPDATE products SET id_category = '$id' WHERE id = '$id' ";
@@ -478,6 +484,7 @@
 		}	else {
 			return false; 
 		}	
-	}
-	*/
+		}
+	}*/
+	
 ?>

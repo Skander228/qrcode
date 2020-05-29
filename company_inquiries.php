@@ -1,52 +1,6 @@
 <?php  
 	require "includes/db.php";
 	require "includes/db_conect.php";
-	include "includes/function.php";
-?>
-
-<?php  
-	// 	Принимаем запрос и определяем его в функцию для ...
-	//	Определяет, была ли установлена переменная значением, отличным от NULL
-	if ( isset( $_POST['new_val_products'] ) ) {	
-		//	Применяем функцию обнавления login
-		if ( update_product_name() ) {
-			// 	Проверка в консоли
-			exit( "It is ok_ 2" );
-		} else {
-			exit( "Error_ 2" );
-		}
-	} 
-
-	if ( isset( $_POST['new_val_products_description'] ) ) {	
-		//	Применяем функцию обнавления login
-		if ( update_product_description() ) {
-			// 	Проверка в консоли
-			exit( "It is ok" );
-		} else {
-			exit( "Error" );
-		}
-	} 
-
-
-	if ( isset( $_POST['new_val_products_location'] ) ) {	
-		//	Применяем функцию обнавления login
-		if ( update_product_location() ) {
-			// 	Проверка в консоли
-			exit( "It is ok _ 3" );
-		} else {
-			exit( "Error _ 3" );
-		}
-	}
-
-/*	if ( isset( $_POST['new_val_category_comany'] ) ) {	
-		//	Применяем функцию обнавления login
-		if ( update_ategory_comany() ) {
-			// 	Проверка в консоли
-			exit( "It is ok _ 3" );
-		} else {
-			exit( "Error _ 3" );
-		}
-	}*/
 ?>
 
 <html>
@@ -122,11 +76,10 @@
 	    <tr>
 	      <th scope="col">#</th>
 	      <th scope="col">Наименование товара</th>
-	      <th scope="col">Описание</th>
 	      <th scope="col">Место нахождения</th>
+	      <th scope="col">Описания проблемы</th>
 	      <th scope="col">Дата</th>
-	      <th scope="col">Наименование организации</th>
-	      <th scope="col">Категория</th>
+	      <th scope="col">Имя пользователя</th>
 	      <th scope="col">DEL</th>
 	    </tr>
 	  </thead>
@@ -138,41 +91,47 @@
 			// Извлекает результирующий ряд в виде ассоциативного массива
 			while( $row = mysqli_fetch_assoc( $result ) ){
 			 	//	Подщтьываем количество строк
-			 	$number++;
-			 	echo 	
-			 		'<tr>' .
-				 	 	'<th scope="row">' . $number . '</th>' .
-				 	 	'<td><div class="edit_product_name" data-id="' . $row['id'] . '" contenteditable>' . 
-				 	 		$row['product_name'] . '</div></td>' .
-				 	 	'<td><div class="edit_product_description" data-id="' . $row['id']. '" contenteditable>' . 
-				 	 		$row['description'] . '</div></td>' .
-				 	 	'<td><div class="edit_product_location" data-id="' . $row['id']. '" contenteditable>' . 
-				 	 		$row['location'] . '</div></td>' .
-				 	 	'<td>' . $row['date'] . '</td>' .
-				 	 	'<td><div >' . $company . '</div></td>';
+			 	
 
-				 	 	// Короче ищем по id и подсталяем id_category из табицы products находим и через value подставляем то к чему подходит
-						if ($result_1 = mysqli_query( $link, "SELECT * FROM categories WHERE id = ' " . $row['id_category'] . " ' " ) ) {
-							// Извлекает результирующий ряд в виде ассоциативного массива
-							while( $row_1 = mysqli_fetch_assoc( $result_1 ) ){
-				 	 			echo '<td><div value=" ' . $row_1['id_category'] . ' ">' . $row_1['category_name'] . '</div></td>'; 
-				 	 		}
-				 	 		mysqli_free_result( $result_1 );
-						}
+		 	 	if ( $result_1 = mysqli_query( $link, "SELECT * FROM inquiries WHERE id_product = '" . $row['id'] . "'" ) ) {
+					// Извлекает результирующий ряд в виде ассоциативного массива
+					while( $row_1 = mysqli_fetch_assoc( $result_1 ) ){
+					 $number++;
+						echo 
+							'<tr>' .
+		 	 				'<th scope="row">' . $number . '</th>' .
+							'<td><div value=" ' . $row_1['id'] . ' ">' . $row['product_name'] . '</div></td>' .
+							'<td><div value=" ' . $row_1['id'] . ' ">' . $row['location'] . '</div></td>' . 
+							'<td><div value=" ' . $row_1['id'] . ' ">' . $row_1['description'] . '</div></td>' .
+							'<td><div value=" ' . $row_1['id'] . ' ">' . $row_1['date'] . '</div></td>';
 
-				 	 	echo '<th><div><a class="btn btn-danger" href="?del=' . $row['id'] . ' ">Удалить</a></div></th>' .
-		        	'</tr>';
+							if ( $result_2 = mysqli_query( $link, "SELECT * FROM users WHERE id = '" . $row_1['id_users'] . "'" ) ) {
+								// Извлекает результирующий ряд в виде ассоциативного массива
+								while( $row_2 = mysqli_fetch_assoc( $result_2 ) ){ 
+									echo 
+										'<td><div value=" ' . $row['id_users'] . ' ">' . $row_2['login'] . '</div></td>';
+								}
+								mysqli_free_result( $result_2 );
+							}
+
+						echo
+							'<th><div><a class="btn btn-danger" href="?dell=' . $row_1['id'] . ' ">Удалить</a></div></th>' . 
+							'</tr>';
+					}
+					mysqli_free_result( $result_1 );
+				}
+		        	
 			}
 
-	    	if ( isset( $_GET['del'] ) ) {
-				$id = $_GET['del'];
+	    	if ( isset( $_GET['dell'] ) ) {
+				$id = $_GET['dell'];
 				//	Делаем запрос к бд на изменения login по id
-				$query = " DELETE FROM products WHERE id = $id ";
+				$query = " DELETE FROM inquiries WHERE id = $id ";
 				//	Выполняем данный запрос
 				$res  = mysqli_query( $link, $query );
-				echo '<div class="alert alert-danger d-flex justify-content-center" role="alert"><h3>Вы успешно удалили товар</h3></div>';
+				echo '<div class="alert alert-danger d-flex justify-content-center" role="alert"><h3>Вы успешно удалили запрос</h3></div>';
 				//header("Refresh:0;  url=users.php");
-				echo '<div class="text-center m-3"><a class="btn btn-warning" href="edit_product_company.php">Close helper</a></div>';
+				echo '<div class="text-center m-3"><a class="btn btn-warning" href="company_inquiries.php">Close helper</a></div>';
 				
 			}
 		    //	Освобождаем память, занятую результатами запроса
@@ -185,8 +144,6 @@
 
 	  </tbody>
 	</table>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="js/script_get_users.js"></script>
 
 	<?php else : ?>		<!--Иначе выполняется от компанмй-->
 
