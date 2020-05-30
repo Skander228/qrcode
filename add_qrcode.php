@@ -1,7 +1,7 @@
 <?php  
 	require "includes/db.php";
 	require "includes/db_conect.php";
-	include "includes/users_add_inquiries.php";
+	include "includes/company_add_product.php";
 
 ?>
 
@@ -15,61 +15,29 @@
 </head>
 <body>
 
-	<?php if ( isset( $_SESSION['logged_user'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
-	<?php 
-		$id = $_SESSION['logged_user']->id;
-		$login = $_SESSION['logged_user']->login;
-	?>
-
-	<div class="container mt-2" >
-
+	<?php if ( isset( $_SESSION['logged_company'] ) ) : ?>		<!--Если компания зарегестрирован то выполняется-->
+		<?php 
+			$id = $_SESSION['logged_company']->id;
+		?>	
+	<div class="container mt-2">
 		<div class="form-group">
-			<h1>Отправка запрса</h1>
+			<h1>Генерировать QR_CODE</h1>
 		</div>
-
 		<form class="" id="emailForm" method="POST" style="margin-bottom: 20px;">
 
 			<div class="form-group">
-			  <select name="id_product" class="form-control">
-			    <option selected class="form-control" >Выберите товар</option>
-				    <?php  
+				<h3>Вставьте после '=' id вашего товара и скопировать запись</h3>
+				<input class="form-control" placeholder="Введите описание товара" type="text" name="description" id="description" 
+				value="<?php echo "qrcode/all_products.php?page=" ?>" rows="3">
+			</div>
 
-				    	$page = 0;
-
-				    	if ( $_GET['page'] ) {
-				    		$page = (int) $_GET['page'];
-				    	}
-
-				    	if ( $result = mysqli_query( $link, "SELECT * FROM products WHERE id = '" . $page . "' " ) ) {
-							// Извлекает результирующий ряд в виде ассоциативного массива
-							while( $row = mysqli_fetch_assoc( $result ) ){
-				    			echo '<option class="form-control" value=" ' .  $row['id'] .  ' ">' . $row['product_name'] . '</option>';
-				    		}
-						}
-				    ?>
-			  </select>
+			 <div class="form-group">
+				<a class="btn btn-success" href="http://qrcoder.ru/?t=l">Сгенерировать</a>	
+				<a class="btn btn-warning" href="edit_product_company.php">Редактировать товар</a>
 			</div>
 
 			<div class="form-group">
-			  <select name="id_users" class="form-control">
-			    <option selected class="form-control">Выберите пользователя</option>
-				    <?php  
-				    	if ( $result = mysqli_query( $link, "SELECT * FROM users WHERE id = '" . $id . "'" ) ) {
-							// Извлекает результирующий ряд в виде ассоциативного массива
-							while( $row = mysqli_fetch_assoc( $result ) ){
-				    			echo '<option class="form-control value=" ' .  $row['id'] .  ' "">' . $row['login'] . '</option>';
-				    		}
-						}
-				    ?>
-			  </select>
-			</div>
-
-			<div class="form-group">
-				<textarea class="form-control" placeholder="Введите описание проблемы" type="text" name="description" value="<?php echo @$data['description']; ?>" rows="3"></textarea>
-			</div>
-
-			<div class="form-group">
-				<button type="submit" id="button" name="b_inquiries" class="btn btn-primary">Отправить запрос</button>		
+				<a class="btn btn-secondary" href="company.php">Вернуться на главную</a>
 			</div>
 
 		</form>
@@ -81,7 +49,6 @@
 			<div class="d-flex align-items-center"><h1 class="form-group" style="font-size: 90px;">Kkhemiri QRcode</h1></div>
 		</div>
 	</div>
-
 
 	<?php else: ?>
 

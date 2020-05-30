@@ -121,6 +121,7 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">#</th>
+	      <th scope="col">id</th>
 	      <th scope="col">Наименование товара</th>
 	      <th scope="col">Описание</th>
 	      <th scope="col">Место нахождения</th>
@@ -142,6 +143,7 @@
 			 	echo 	
 			 		'<tr>' .
 				 	 	'<th scope="row">' . $number . '</th>' .
+				 	 	'<th scope="row">' . $row['id'] . '</th>' .
 				 	 	'<td><div class="edit_product_name" data-id="' . $row['id'] . '" contenteditable>' . 
 				 	 		$row['product_name'] . '</div></td>' .
 				 	 	'<td><div class="edit_product_description" data-id="' . $row['id']. '" contenteditable>' . 
