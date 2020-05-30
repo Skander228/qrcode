@@ -46,6 +46,7 @@
 					</div>
 
 					<a class="btn btn-secondary" href="company_inquiries.php">Управление запросам</a>
+					<a class="btn btn-secondary" href="add_qrcode.php">Генерировать QR_CODE</a>
 
 				</div>
 

@@ -28,12 +28,12 @@
 			<div class="form-group">
 				<h3>Вставьте после '=' id вашего товара и скопировать запись</h3>
 				<input class="form-control" placeholder="Введите описание товара" type="text" name="description" id="description" 
-				value="<?php echo "qrcode/all_products.php?page=" ?>" rows="3">
+				value="<?php echo "kkhemiri.mcdir.ru/all_products.php?page=" ?>" rows="3">
 			</div>
 
 			 <div class="form-group">
 				<a class="btn btn-success" href="http://qrcoder.ru/?t=l">Сгенерировать</a>	
-				<a class="btn btn-warning" href="edit_product_company.php">Редактировать товар</a>
+				<a class="btn btn-warning" href="edit_product_company.php">Посмотреть id товаров</a>
 			</div>
 
 			<div class="form-group">
