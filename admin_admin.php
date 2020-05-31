@@ -26,6 +26,16 @@
 			exit( "Error" );
 		}
 	} 
+
+	if ( isset( $_POST['new_val_password'] ) ) {	
+		//	Применяем функцию обнавления login
+		if ( update_admin_password() ) {
+			// 	Проверка в консоли
+			exit( "It is ok" );
+		} else {
+			exit( "Error" );
+		}
+	} 
 ?>
 
 <html>
